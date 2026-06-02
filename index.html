@@ -7,6 +7,28 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&amp;family=Noto+Serif+Bengali:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
   <style>
+#musicToggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    background: #c9a962;
+    color: #0a1628;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+}
+
+#musicToggle:hover {
+    transform: scale(1.05);
+}
+</style>
+  <style>
     :root {
       --navy: #0a1628;
       --navy-light: #152238;
@@ -100,7 +122,17 @@
       </div>
     </div>
   </nav>
+<!-- Background Music -->
+<audio id="bgMusic" loop>
+    <source src="WhatsApp Audio 2026-06-02 at 8.57.27 PM.mp3" type="audio/mpeg">
+    Your browser does not support audio.
+</audio>
 
+<!-- Music Toggle Button -->
+<button id="musicToggle">
+    🎵 Music ON
+</button>
+  
   <!-- Hero Section -->
   <section id="home" class="relative min-h-screen flex items-center justify-center bg-[#0a1628] overflow-hidden">
     <!-- Decorative elements -->
@@ -429,9 +461,6 @@
       </div>
     </div>
   </section>
-  <audio id="bgMusic" autoplay muted loop>
-    <source src="WhatsApp Audio 2026-06-02 at 8.57.27 PM.mp3" type="audio/mpeg">
-</audio>
 
   <!-- Footer -->
   <footer class="bg-[#0a1628] py-12 border-t border-[#c9a962]/20">
@@ -464,10 +493,25 @@
     </div>
   </footer>
 <script>
-document.addEventListener("click", () => {
-    const music = document.getElementById("bgMusic");
-    music.muted = false;
-    music.play();
-}, { once: true });
+const music = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicToggle");
+
+// Try to autoplay when page loads
+window.addEventListener("load", () => {
+    music.play().catch(() => {
+        musicBtn.innerHTML = "🎵 Play Music";
+    });
+});
+
+// Toggle button
+musicBtn.addEventListener("click", () => {
+    if (music.paused) {
+        music.play();
+        musicBtn.innerHTML = "🔊 Music ON";
+    } else {
+        music.pause();
+        musicBtn.innerHTML = "🔇 Music OFF";
+    }
+});
 </script>
 </body></html>
