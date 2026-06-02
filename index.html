@@ -429,6 +429,9 @@
       </div>
     </div>
   </section>
+  <audio id="bgMusic" autoplay muted loop>
+    <source src="WhatsApp Audio 2026-06-02 at 8.57.27 PM.mp3" type="audio/mpeg">
+</audio>
 
   <!-- Footer -->
   <footer class="bg-[#0a1628] py-12 border-t border-[#c9a962]/20">
@@ -460,5 +463,11 @@
       </div>
     </div>
   </footer>
-
+<script>
+document.addEventListener("click", () => {
+    const music = document.getElementById("bgMusic");
+    music.muted = false;
+    music.play();
+}, { once: true });
+</script>
 </body></html>
